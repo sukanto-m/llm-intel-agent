@@ -1,18 +1,22 @@
-# nodes/powers.py
+# agents/powers.py
 
-def powers_node(state):
-    summaries = state.get("summaries", [])
-    citations = state.get("citations", [])
+import os
+from openai import OpenAI
+from mcp.mcp_protocol import create_message
+from secrets_check import check_required_env_vars
 
-    lines = ["# 🧠 LLM Intelligence Dossier with Code Demos\n"]
-    for i, s in enumerate(summaries):
-        lines.append(f"## {s['title']}\n")
-        lines.append(f"{s['summary']}\n")
-        if i < len(citations):
-            lines.append(f"📌 Citation: {citations[i]['citation']}")
-        lines.append("### 🔧 Code Demo:\n")
-        lines.append("```python\n" + s['demo_code'].strip() + "\n```")
-        lines.append("---\n")
+check_required_env_vars(["OPENAI_API_KEY"])
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-    state["report"] = "\n".join(lines)
-    return state
+def handle_powers(messages):
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4",
+            messages=messages,
+            temperature=0.7,
+            max_tokens=800
+        )
+        content = response.choices[0].message.content
+        return create_message("assistant", content)
+    except Exception as e:
+        return create_message("assistant", f"❌ Powers failed: {e}")

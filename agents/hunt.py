@@ -1,20 +1,22 @@
 # agents/hunt.py
 
+import os
+from openai import OpenAI
 from mcp.mcp_protocol import create_message
+from secrets_check import check_required_env_vars
+
+check_required_env_vars(["OPENAI_API_KEY"])
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def handle_hunt(messages):
-    latest_msg = [m for m in messages if m["role"] == "user"][-1]
-    papers = latest_msg["content"].get("papers", [])
-
-    if not papers:
-        return create_message("assistant", "No papers provided for citation.")
-
-    citations = []
-    for p in papers:
-        citation = f"{p['authors'][0]} et al., \"{p['title']}\", arXiv, {p['link']}"
-        citations.append(citation)
-
-    return create_message("assistant", {
-        "citations": citations,
-        "note": f"Generated {len(citations)} citations."
-    })
+    try:
+        response = client.chat.completions.create(
+            model="gpt-4",
+            messages=messages,
+            temperature=0.7,
+            max_tokens=800
+        )
+        content = response.choices[0].message.content
+        return create_message("assistant", content)
+    except Exception as e:
+        return create_message("assistant", f"❌ Hunt failed: {e}")
