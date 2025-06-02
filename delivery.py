@@ -2,9 +2,6 @@
 
 import os
 import requests
-from secrets_check import check_required_env_vars
-
-check_required_env_vars(["TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"])
 
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
