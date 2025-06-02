@@ -3,15 +3,15 @@
 import os
 from openai import OpenAI
 from mcp.mcp_protocol import create_message
-from secrets_check import check_required_env_vars
 
-check_required_env_vars(["OPENAI_API_KEY"])
+
+api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def handle_hunt(messages):
     try:
         response = client.chat.completions.create(
-            model="gpt-4",
+            model="gpt-4o",
             messages=messages,
             temperature=0.7,
             max_tokens=800

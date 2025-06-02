@@ -28,6 +28,4 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run mission
-        run: |
-             cd llm_intel_ops 
-             python run.py
+        run: python run.py
