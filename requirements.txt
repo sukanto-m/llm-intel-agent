@@ -1,0 +1,7 @@
+langgraph>=0.4.7
+langchain>=0.1.16
+feedparser>=6.0.10
+openai>=1.22.0
+tiktoken>=0.6.0
+networkx>=3.2.1      # Optional: for LangGraph visualization
+graphviz             # Optional: for graph rendering

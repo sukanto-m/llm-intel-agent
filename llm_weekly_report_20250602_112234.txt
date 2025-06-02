@@ -1,0 +1,58 @@
+🧠 Summaries + Code Demos:
+Here are summaries and simple code demos for the papers:
+
+1. Trustworthy and Efficient LLMs Meet Databases
+This paper discusses how large language models (LLMs) can be made more trustworthy and efficient, especially in output generation. It explores the synergies between LLMs and databases and highlights new opportunities and challenges at their intersection.
+```python
+# Demo: Using LLM for database tasks
+from transformers import pipeline
+llm = pipeline('text-generation', model='gpt-2')
+prompt = "SELECT * FROM users WHERE age > 30"
+output = llm(prompt)
+print(output)
+```
+
+2. Large Language Models as Software Components: A Taxonomy for LLM-Integrated Applications
+This research provides a taxonomy for LLM-integrated applications and discusses various ways to utilize LLMs in applications, as well as options for implementing such integrations.
+```python
+# Demo: Using LLM in an application
+from transformers import pipeline
+llm = pipeline('sentiment-analysis')
+text = "I love this product!"
+output = llm(text)
+print(output)
+```
+
+3. Parrot: Efficient Serving of LLM-based Applications with Semantic Variable
+This paper introduces Parrot, a system that improves the end-to-end performance of LLM-based applications by using a unified abstraction called Semantic Variable.
+```python
+# Demo: Using Parrot for efficient LLM serving
+# Note: Actual code would depend on the implementation details of Parrot
+```
+
+4. LLM Online Spatial-temporal Signal Reconstruction Under Noise
+The paper introduces the LLM-OSR framework, which integrates Graph Signal Processing (GSP) and Large Language Models (LLMs) for online spatial-temporal signal reconstruction.
+```python
+# Demo: Using LLM for signal reconstruction
+# Note: Actual code would depend on the implementation details of LLM-OSR
+```
+
+5. What Limits LLM-based Human Simulation: LLMs or Our Design?
+The paper discusses the limitations and challenges of LLM-based human simulations and suggests potential solutions and future directions.
+```python
+# Demo: Using LLM for human simulation
+from transformers import pipeline
+llm = pipeline('text-generation', model='gpt-2')
+prompt = "As a human, I would say..."
+output = llm(prompt)
+print(output)
+```
+
+📚 Citations:
+- Kyoungmin Kim et al., "Trustworthy and Efficient LLMs Meet Databases", arXiv, http://arxiv.org/abs/2412.18022v1
+- Irene Weber et al., "Large Language Models as Software Components: A Taxonomy for
+  LLM-Integrated Applications", arXiv, http://arxiv.org/abs/2406.10300v1
+- Chaofan Lin et al., "Parrot: Efficient Serving of LLM-based Applications with Semantic
+  Variable", arXiv, http://arxiv.org/abs/2405.19888v1
+- Yi Yan et al., "LLM Online Spatial-temporal Signal Reconstruction Under Noise", arXiv, http://arxiv.org/abs/2411.15764v1
+- Qian Wang et al., "What Limits LLM-based Human Simulation: LLMs or Our Design?", arXiv, http://arxiv.org/abs/2501.08579v1

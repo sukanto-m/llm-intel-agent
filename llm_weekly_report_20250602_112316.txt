@@ -1,0 +1,71 @@
+🧠 Summaries + Code Demos:
+**Paper 1: Trustworthy and Efficient LLMs Meet Databases**
+
+Summary: This paper discusses the integration of Large Language Models (LLMs) and databases, specifically focusing on making LLMs more trustworthy and efficient in generating outputs. The researchers explore the synergy between these two fields and highlight the opportunities and challenges that arise from their intersection.
+
+```python
+# This is a conceptual paper, so no specific code demo is provided.
+```
+
+**Paper 2: Large Language Models as Software Components: A Taxonomy for LLM-Integrated Applications**
+
+Summary: This research proposes a taxonomy for applications that integrate LLMs. The researchers examined various LLM-integrated applications to identify key dimensions and characteristics. The resulting taxonomy offers a framework for analysing and describing such systems, and can prove beneficial for the development of new LLM-integrated applications.
+
+```python
+# This is a conceptual paper, so no specific code demo is provided.
+```
+
+**Paper 3: Parrot: Efficient Serving of LLM-based Applications with Semantic Variable**
+
+Summary: The paper introduces Parrot, an LLM service system that enhances the end-to-end experience of LLM-based applications. By using a Semantic Variable, Parrot can expose application-level information to public LLM services, thereby optimizing the performance of LLM applications.
+
+```python
+# Assuming Parrot was a Python library, here's how it might be used
+
+# import the Parrot library
+from parrot import ParrotService
+
+# create an instance of the Parrot service
+parrot_service = ParrotService()
+
+# define the Semantic Variable
+semantic_variable = parrot_service.define_semantic_variable(input_variable, output_variable)
+
+# use the Semantic Variable in an LLM request
+llm_request = parrot_service.make_request(prompt, semantic_variable)
+```
+
+**Paper 4: LLM Online Spatial-temporal Signal Reconstruction Under Noise**
+
+Summary: The paper presents the LLM Online Spatial-temporal Reconstruction (LLM-OSR) framework, which combines Graph Signal Processing (GSP) and LLMs to reconstruct spatial-temporal signals. The framework has been evaluated and proven to be effective, accurate, and robust under varying Gaussian noise conditions.
+
+```python
+# Assuming LLM-OSR was a Python library, here's how it might be used
+
+# import the LLM-OSR library
+from llm_osr import LLM_OSR
+
+# create an instance of the LLM-OSR framework
+llm_osr = LLM_OSR()
+
+# use the LLM-OSR framework to reconstruct a spatial-temporal signal
+reconstructed_signal = llm_osr.reconstruct_signal(input_signal, gaussian_noise_level)
+```
+
+**Paper 5: What Limits LLM-based Human Simulation: LLMs or Our Design?**
+
+Summary: The paper emphasizes the need for addressing both the inherent limitations of LLMs and the challenges in simulation framework design to advance LLM-based human simulations. It provides a comprehensive analysis of these limitations and challenges, and proposes potential solutions for them.
+
+```python
+# This is a conceptual paper, so no specific code demo is provided.
+```
+
+
+📚 Citations:
+- Kyoungmin Kim et al., "Trustworthy and Efficient LLMs Meet Databases", arXiv, http://arxiv.org/abs/2412.18022v1
+- Irene Weber et al., "Large Language Models as Software Components: A Taxonomy for
+  LLM-Integrated Applications", arXiv, http://arxiv.org/abs/2406.10300v1
+- Chaofan Lin et al., "Parrot: Efficient Serving of LLM-based Applications with Semantic
+  Variable", arXiv, http://arxiv.org/abs/2405.19888v1
+- Yi Yan et al., "LLM Online Spatial-temporal Signal Reconstruction Under Noise", arXiv, http://arxiv.org/abs/2411.15764v1
+- Qian Wang et al., "What Limits LLM-based Human Simulation: LLMs or Our Design?", arXiv, http://arxiv.org/abs/2501.08579v1
