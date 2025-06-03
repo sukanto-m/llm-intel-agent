@@ -14,28 +14,29 @@ def fetch_llm_papers(max_results=10, days_back=7):
     )
 
     headers = {
-        "User-Agent": "Mozilla/5.0 (compatible; LLMIntelBot/1.0; +https://yourdomain.com)"
+        "User-Agent": "LLMIntelBot/1.0 (+https://yourdomain.com)"
     }
 
     for attempt in range(3):
         try:
-            print(f"🔍 Fetching arXiv papers (attempt {attempt + 1})...")
+            print(f"🔍 Attempt {attempt+1}: Fetching arXiv papers...")
             response = requests.get(url, headers=headers, timeout=10)
             if response.status_code == 200:
                 break
             else:
-                print(f"⚠️ arXiv response: {response.status_code}")
+                print(f"⚠️ arXiv response status code: {response.status_code}")
         except Exception as e:
-            print(f"⚠️ Request failed: {e}")
+            print(f"⚠️ arXiv request failed: {e}")
             time.sleep(2)
     else:
-        print("❌ Failed to fetch arXiv data after 3 attempts.")
+        print("❌ Failed to retrieve data from arXiv after 3 attempts.")
         return []
 
-    # Parse Atom XML
+    # Parse Atom feed
     root = ET.fromstring(response.content)
     entries = root.findall("{http://www.w3.org/2005/Atom}entry")
 
+    # Use UTC for GitHub compatibility
     start_date = datetime.now(timezone.utc) - timedelta(days=days_back)
     papers = []
 
@@ -43,14 +44,15 @@ def fetch_llm_papers(max_results=10, days_back=7):
         published_str = entry.find("{http://www.w3.org/2005/Atom}published").text.strip()
         published_dt = datetime.fromisoformat(published_str.replace("Z", "+00:00"))
 
+        print(f"📝 Checking paper published at: {published_dt.isoformat()}")
+
         if published_dt >= start_date:
-            paper = {
+            papers.append({
                 "title": entry.find("{http://www.w3.org/2005/Atom}title").text.strip(),
                 "summary": entry.find("{http://www.w3.org/2005/Atom}summary").text.strip(),
                 "link": entry.find("{http://www.w3.org/2005/Atom}id").text.strip(),
                 "published": published_str
-            }
-            papers.append(paper)
+            })
 
-    print(f"📄 Total recent LLM papers found: {len(papers)}")
+    print(f"✅ Total papers returned: {len(papers)}")
     return papers

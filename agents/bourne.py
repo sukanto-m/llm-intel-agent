@@ -9,23 +9,19 @@ from utils.fetch_papers import fetch_llm_papers
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def handle_bourne(messages=None):
-    """
-    Agent Bourne builds its own messages unless provided externally.
-    """
     if messages is None:
-        # Build messages internally
-        papers = fetch_llm_papers(max_results=10, days_back=7)
+        papers = fetch_llm_papers(max_results=15, days_back=30)
 
         if not papers:
             return create_message("assistant", "❌ Bourne found no recent LLM papers.")
 
-        summary_prompt = "Summarize the following papers:\n\n"
+        prompt = "Summarize these LLM papers in plain English:\n\n"
         for i, paper in enumerate(papers, start=1):
-            summary_prompt += f"{i}. {paper['title']}\n{paper['summary']}\nLink: {paper['link']}\n\n"
+            prompt += f"{i}. {paper['title']}\n{paper['summary']}\nLink: {paper['link']}\n\n"
 
         messages = [
-            {"role": "system", "content": "You are Bourne, an elite AI summarizer."},
-            {"role": "user", "content": summary_prompt}
+            {"role": "system", "content": "You are Bourne, an elite AI summarizer of cutting-edge LLM research."},
+            {"role": "user", "content": prompt}
         ]
 
     try:
